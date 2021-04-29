@@ -1,6 +1,7 @@
 /** @file */
 #include <iostream>
-
+#include "menu.h"
+using namespace std;
 /**
  * \brief   The function bar.
  *
@@ -26,6 +27,9 @@ void fn(){
 }
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+	menu<int> menuObj;
+	//menuObj.getMenuChoice();
+	menuObj.switchState();
+
+	return 0;
 }
