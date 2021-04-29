@@ -1,6 +1,6 @@
 /** @file */
 #include <iostream>
-
+#include "menu.h"
 /**
  * \brief   The function bar.
  *
@@ -21,11 +21,12 @@
  * \retval        ERR_SUCCESS    The function is successfully executed
  * \retval        ERR_FAILURE    An error occurred
  */
-void fn(){
 
-}
+using namespace std;
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
+int main(){
+    menu<int> menuObj;
+    //menuObj.getMenuChoice();
+    menuObj.switchState();
     return 0;
 }
