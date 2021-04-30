@@ -6,3 +6,5 @@ echo.o: echo.cpp echo.h processor.h
 	g++ -std=c++11 -c echo.cpp
 normalization.o: normalization.cpp normalization.h processor.h
 	g++ -std=c++11 -c normalization.cpp
+clean:
+	rm *.o audiomanagement
