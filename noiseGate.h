@@ -6,6 +6,7 @@
 
 class NoiseGate: public Processor{
 	double gateLevel;
+	double level;
 	public:
 		NoiseGate();
 		NoiseGate(double level);

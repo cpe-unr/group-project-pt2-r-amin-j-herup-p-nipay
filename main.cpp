@@ -29,7 +29,7 @@ void fn(){
 int main() {
 	menu<int> menuObj;
 	//menuObj.getMenuChoice();
-	menuObj.switchState();
+	//menuObj.switchState();
 
 	return 0;
 }
