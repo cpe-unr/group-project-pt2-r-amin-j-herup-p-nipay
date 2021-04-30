@@ -9,10 +9,10 @@ class Echo: public Processor{
 	int newDelay;
 	public:
 		Echo();
-		Echo(double newDelay);
+		Echo(int newDelay);
 
 		int getDelay();
-		void setDelay(double newDelay);
+		void setDelay(int newDelay);
 
 		void processorMonoE(int size, unsigned char* buffer);
 		void processorStereoE(int sizeR, int sizeL, unsigned char* bufferR, unsigned char* bufferL);
