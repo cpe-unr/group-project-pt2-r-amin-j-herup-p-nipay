@@ -12,7 +12,7 @@ class Echo: public Processor{
 		Echo(double newDelay);
 
 		int getDelay();
-		void setLevel(double newDelay);
+		void setDelay(double newDelay);
 
 		void processorMonoE(int size, unsigned char* buffer);
 		void processorStereoE(int sizeR, int sizeL, unsigned char* bufferR, unsigned char* bufferL);
