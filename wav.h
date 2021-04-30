@@ -1,24 +1,28 @@
 #pragma once
 
-#include "WaveHeader.h"
+#ifndef WAV_H
+#define WAV_H
 
 #include <string>
-#include <fstream>
-#include <iostream>
+#include <vector>
 
-class Wav {
-public:
-    void readFile(const std::string &fileName);
-    void writeFile(const std::string &outFileName);
-private:
+#include "wavheader.h"
+
+class Wav{
+protected:
+    int bufferSize_data;
     unsigned char* buffer = NULL;
-    wav_header waveHeader;
+    std::vector <SubChunkData> metadata;
+    wavHeader wave_Header;
+    dataChunk data_Chunk;
+    FMT fmt;
 public:
-    virtual ~Wav();
-
-public:
+    wavHeader getwavHeader();
     unsigned char *getBuffer();
-    int getBufferSize() const;
+    int getBufferSize();
+    void readFile(const std::string &filename);
+    void writeFile(const std::string &outFilename);
+    ~Wav();
 };
 
-
+#endif //WAV_H
