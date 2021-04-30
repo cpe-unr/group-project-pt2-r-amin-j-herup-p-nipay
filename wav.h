@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-#include "wavheader.h"
+#include "wavHeader.h"
 
 class Wav{
 protected:

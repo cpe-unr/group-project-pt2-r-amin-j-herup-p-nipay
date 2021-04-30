@@ -1,4 +1,3 @@
-https://stackoverflow.com/questions/13660777/c-reading-the-data-part-of-a-wav-file
 
 #include <iostream>
 #include <string>
