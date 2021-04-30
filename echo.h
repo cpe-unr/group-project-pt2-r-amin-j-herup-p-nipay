@@ -11,7 +11,7 @@ class Echo: public Processor{
 		Echo();
 		Echo(double newDelay);
 
-		double getDelay();
+		int getDelay();
 		void setLevel(double newDelay);
 
 		void processorMonoE(int size, unsigned char* buffer);
