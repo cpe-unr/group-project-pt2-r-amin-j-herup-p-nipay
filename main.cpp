@@ -1,7 +1,6 @@
 /** @file */
 #include <iostream>
 #include "menu.h"
-using namespace std;
 /**
  * \brief   The function bar.
  *
@@ -22,14 +21,12 @@ using namespace std;
  * \retval        ERR_SUCCESS    The function is successfully executed
  * \retval        ERR_FAILURE    An error occurred
  */
-void fn(){
 
-}
+using namespace std;
 
-int main() {
-	menu<int> menuObj;
-	//menuObj.getMenuChoice();
-	//menuObj.switchState();
-
-	return 0;
+int main(){
+    menu<int> menuObj;
+    //menuObj.getMenuChoice();
+    menuObj.switchState();
+    return 0;
 }
