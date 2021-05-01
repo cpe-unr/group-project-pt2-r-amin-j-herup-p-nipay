@@ -1,5 +1,5 @@
 audiomanagement: noiseGate.o echo.o normalization.o menu.o wav.o main.cpp
-	g++ -std=c++11 noiseGate.o echo.o normalizaiton.o  menu.o wav.o main.cpp -o audiomanagement
+	g++ -std=c++11 noiseGate.o echo.o normalization.o  menu.o wav.o main.cpp -o audiomanagement
 menu.o: menu.cpp menu.h
 	g++ -std=c++11 -c menu.cpp
 wav.o: wav.cpp wav.h wavHeader.h
