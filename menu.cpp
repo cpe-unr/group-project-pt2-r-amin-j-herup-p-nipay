@@ -1,9 +1,7 @@
 //Roohan Amin, Pamella Nipay, Josh Herup
 //Date: 5/2/2021
 //Semester Project
-
-#include "menu.h"
-
+/*
 //default ctor
 template<typename T>
 menu<T>::menu(){
@@ -14,6 +12,7 @@ menu<T>::menu(){
 template<typename T>
 menu<T>::menu(T userChoice) : userChoice(userChoice){
 }
+*/
 /*
 int menu::getMenuChoice(){
 
@@ -29,6 +28,7 @@ int menu::getMenuChoice(){
 	return userInput;
 }
 */
+/*
 template<typename T>
 T menu<T>::switchState(){
 //wavManager and wavIO class, pass in objects of those class to menu, in default ctor of menu set equal to class, and in main.cpp wavManager and wavIO get created first, then create menu and pass in objects via constructor
@@ -69,3 +69,4 @@ T menu<T>::switchState(){
 		}
 	}while(userChoice != 0);
 }
+*/
