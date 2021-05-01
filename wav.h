@@ -1,7 +1,5 @@
 #pragma once
 
-#ifndef WAV_H
-#define WAV_H
 
 #include <string>
 #include <vector>
@@ -23,6 +21,6 @@ public:
     void readFile(const std::string &filename);
     void writeFile(const std::string &outFilename);
     ~Wav();
+    
 };
 
-#endif //WAV_H
