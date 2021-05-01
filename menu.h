@@ -1,3 +1,8 @@
+
+//Roohan Amin, Pamella Nipay, Josh Herup
+//Date: 5/2/2021
+//Semester Project
+
 #ifndef MENU_H
 #define MENU_H
 
@@ -9,23 +14,23 @@ using namespace std;
 template<typename T>
 class menu{
 
-	private:
-		T userChoice;
-		//void wavManager, wavIO;
+    private:
+	T userChoice;
+	//void wavManager, wavIO;
 
-	public:
-		//default ctor
-		menu() = default;
+    public:
+	//default ctor
+	menu();
+	//parameterized ctor
+	menu(T userChoice);
 
-		//parameterized ctor
-		menu(T userChoice);
+	//int getMenuChoice();
 
-		//int getMenuChoice();
+	T switchState();
 
-		T switchState();
 
 };
 
 
-
+#include "menu.cpp"
 #endif
