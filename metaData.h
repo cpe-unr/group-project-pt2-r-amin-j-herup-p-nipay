@@ -2,7 +2,7 @@
 
 #include <string>
 #include <iostream>
-#include <fstream>fstream
+#include <fstream>
 
 class MetaData{
 private:
@@ -12,7 +12,7 @@ private:
     
 public:
     MetaData() = default;
-    Metadata(std::ifstream&);
+    MetaData(std::ifstream&);
     
     std:: string getMdID() const;
     void setMdID(char) const;
@@ -23,4 +23,4 @@ public:
     std::string getBuffer() const;
     void setBuffer(std::string);
     
-}
+};
