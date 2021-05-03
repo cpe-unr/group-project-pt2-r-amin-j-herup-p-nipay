@@ -12,7 +12,12 @@ wavHeader Wav::getwavHeader(){
 unsigned char *Wav::getBuffer(){
     return buffer;
 }
-
+int Wav::getBitDepth(){
+	return bitDepth;
+}
+int Wav::getNumChannels(){
+	return numChannels;
+}
 void Wav::readFile(const std::string &fileName){
     std::ifstream file(fileName, std::ios::binary | std::ios::in);
     
@@ -27,6 +32,8 @@ void Wav::readFile(const std::string &fileName){
             //Format Chunk
             if(header_word == "FMT "){
                 file.read((char*)&fmt, sizeof(FMT));
+			 bitDepth = fmt.bit_depth;
+			 numChannels = fmt.num_channels;
             }
             //Metadata Chunk
             else if(header_word == "LIST"){
@@ -89,5 +96,6 @@ Wav::~Wav(){
         delete[] buffer;
     }
 }
+
 
 //missing vectors, perserving it in vector, print out
