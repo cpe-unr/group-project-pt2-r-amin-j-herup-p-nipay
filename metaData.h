@@ -2,7 +2,7 @@
 
 #include <string>
 #include <iostream>
-#include <fstream>fstream
+#include <fstream>
 
 class MetaData{
 private:
@@ -23,4 +23,4 @@ public:
     std::string getBuffer() const;
     void setBuffer(std::string);
     
-}
+};

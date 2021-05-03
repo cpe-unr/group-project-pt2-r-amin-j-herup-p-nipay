@@ -18,6 +18,8 @@ public:
     wavHeader getwavHeader();
     unsigned char *getBuffer();
     int getBufferSize();
+    short getNumChannels();
+    short getBitDepth();
     void readFile(const std::string &filename);
     void writeFile(const std::string &outFilename);
     ~Wav();

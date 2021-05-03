@@ -12,6 +12,12 @@ wavHeader Wav::getwavHeader(){
 unsigned char *Wav::getBuffer(){
     return buffer;
 }
+short getNumChannels(){
+    return wavHeader.num_channels;
+}
+short getBitDepth(){
+    return wavHeader.bit_depth;
+}
 
 void Wav::readFile(const std::string &fileName){
     std::ifstream file(fileName, std::ios::binary | std::ios::in);
