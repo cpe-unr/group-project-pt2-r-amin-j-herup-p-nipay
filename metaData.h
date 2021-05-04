@@ -15,10 +15,8 @@ public:
     MetaData(std::ifstream&);
     
     std:: string getMdID() const;
-    void setMdID(char) const;
     
     int getMdSize () const;
-    void setMdSize(int);
     
     std::string getBuffer() const;
     void setBuffer(std::string);
