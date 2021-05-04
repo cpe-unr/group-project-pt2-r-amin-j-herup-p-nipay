@@ -1,17 +1,27 @@
-audiomanagement: noiseGate.o echo.o normalization.o menu.o wav.o main.cpp
-	g++ -std=c++11 -o audiomanagement noiseGate.o echo.o normalization.o menu.o wav.o main.cpp
-menu.o: menu.cpp menu.h
-	g++ -std=c++11 -c menu.cpp
-wav.o: wav.cpp wav.h wavHeader.h
-	g++ -std=c++11 -c wav.cpp
-metaDataManager.o: metaDataManager.cpp metaDataManager.cpp metaDataHeader.h
-	g++ -std=c++11 -c metaDataManager.cpp
-noiseGate.o: noiseGate.cpp noiseGate.h processor.h
-	g++ -std=c++11 -c noiseGate.cpp
-echo.o: echo.cpp echo.h processor.h
-	g++ -std=c++11 -c echo.cpp
-normalization.o: normalization.cpp normalization.h processor.h
-	g++ -std=c++11 -c normalization.cpp
+TARGET = audiomanagement
+LIBS = -lm  #List of external libraries required to link against (here m is the math Library, just a placeholder)
+HEADERS = wav.h wavHeader.h echo.h menu.h metaData.h metaDataHeader.h metaDataManager.h noiseGate.h normalization.h processor.h #List of all header files
+SRCS = main.cpp wav.cpp echo.cpp menu.cpp metaData.cpp metaDataManager.cpp noiseGate.cpp normalization.cpp #List of all source files
+OBJECTS := $(patsubst %.cpp,%.o,$(SRCS))  #Creates a list of object files (.o) for every entry under SRCS (source files)
+CXX = g++ #compiler command to be used
+CXX_FLAGS = -Wall -std=c++11 -g #compilation flags to be used (here std=c++11 is just for reference, not necessary)
+
+#Rule that states that default all and clean are make commands and not associated with any files
+.PHONY: default all clean
+
+#Rule that defers make all to the TARGET rule
+all: $(TARGET)
+
+#Rule to compile a single object file
+%.o: %.cpp $(HEADERS)
+	$(CXX) $(CXX_FLAGS) -c $< -o $@
+
+#Rule that makes all object files in the OBJECTS list, then links them all together to produce TARGET executable
+$(TARGET): $(OBJECTS)
+	$(CXX) $(CXX_FLAGS) $(OBJECTS) $(LIBS) -o $@
+
+#Rule to clean up the build (removes iteratively all object files .o and the execitable TARGET)
 clean:
-	rm *.o audiomanagement
+	-rm -f *.o
+	-rm -f $(TARGET)
 

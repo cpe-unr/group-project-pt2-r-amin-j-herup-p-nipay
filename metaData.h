@@ -1,3 +1,7 @@
+//Roohan Amin, Pamella Nipay, Josh Herup
+//Date: 3/2/2021
+//Semester Project
+
 #pragma once
 
 #include <string>
@@ -15,10 +19,8 @@ public:
     MetaData(std::ifstream&);
     
     std:: string getMdID() const;
-    void setMdID(char) const;
     
     int getMdSize () const;
-    void setMdSize(int);
     
     std::string getBuffer() const;
     void setBuffer(std::string);

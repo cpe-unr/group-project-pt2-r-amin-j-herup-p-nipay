@@ -1,3 +1,7 @@
+//Roohan Amin, Pamella Nipay, Josh Herup
+//Date: 3/2/2021
+//Semester Project
+
 #pragma once
 
 
@@ -5,6 +9,7 @@
 #include <vector>
 
 #include "wavHeader.h"
+#include "metaDataManager.h"
 
 class Wav{
 protected:
@@ -14,6 +19,7 @@ protected:
     wavHeader wave_Header;
     dataChunk data_Chunk;
     FMT fmt;
+    MdManager md;
 public:
     wavHeader getwavHeader();
     unsigned char *getBuffer(int i);
@@ -22,6 +28,7 @@ public:
     int getNumChannels();
     void readFile(const std::string &filename);
     void writeFile(const std::string &outFilename);
+    void printMetaData();
     ~Wav();
     
 };
