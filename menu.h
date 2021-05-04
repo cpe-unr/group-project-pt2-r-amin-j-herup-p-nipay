@@ -6,6 +6,8 @@
 #define MENU_H
 
 #include <iostream>
+#include <string>
+#include "wav.h"
 //#include the wav guys
 
 using namespace std;
@@ -26,7 +28,7 @@ class menu{
 
 	//int getMenuChoice();
 
-	T switchState();
+	T switchState(string fileName);
 
 };
 
@@ -41,8 +43,10 @@ menu<T>::menu(T userChoice) : userChoice(userChoice){
 }
 
 template<typename T>
-T menu<T>::switchState(){
+T menu<T>::switchState(string fileName){
 //wavManager and wavIO class, pass in objects of those class to menu, in default ctor of menu set equal to class, and in main.cpp wavManager and wavIO get created first, then create menu and pass in objects via constructor
+	Wav wav;
+	wav.readFile(fileName);
 	do{
 
 		//int userInput;

@@ -46,6 +46,7 @@ int main(int argc, char* const argv[]){
 		return 0;
 	}
 	wavFile.close();
+
     /*
     WavManager wavM(argv[1]);
     if(wavM.getSize() < 1){
@@ -59,6 +60,6 @@ int main(int argc, char* const argv[]){
     */
     menu<int> menuObj;
     //menuObj.getMenuChoice();
-    menuObj.switchState();
+    menuObj.switchState(file);
     return 0;
 }

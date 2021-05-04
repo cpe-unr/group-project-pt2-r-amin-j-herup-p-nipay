@@ -13,10 +13,10 @@ unsigned char *Wav::getBuffer(){
     return buffer;
 }
 int Wav::getBitDepth(){
-	return bitDepth;
+	return fmt.bit_depth;
 }
 int Wav::getNumChannels(){
-	return numChannels;
+	return fmt.num_channels;
 }
 void Wav::readFile(const std::string &fileName){
     std::ifstream file(fileName, std::ios::binary | std::ios::in);
