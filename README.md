@@ -3,14 +3,14 @@ group-project-pt2-r-amin-j-herup-p-nipay created by GitHub Classroom
 
 # Audio File Management System - Semester Project
 ## List of Group Members:
-Roohan Amin
-Pamella Nipay
-Josh Herup
+*Roohan Amin
+*Pamella Nipay
+*Josh Herup
 ## Responsibilities of each group member:
 
-Roohan Amin - User Interaction
-Pamella Nipay - File IO
-Josh Herup - Wav Processing
+*Roohan Amin - User Interaction
+*Pamella Nipay - File IO
+*Josh Herup - Wav Processing
 
 ## Description of design:
 
