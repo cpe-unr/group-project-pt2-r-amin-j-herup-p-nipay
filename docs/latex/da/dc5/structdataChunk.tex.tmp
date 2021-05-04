@@ -1,0 +1,20 @@
+\hypertarget{structdataChunk}{}\section{data\+Chunk Struct Reference}
+\label{structdataChunk}\index{data\+Chunk@{data\+Chunk}}
+
+
+Inheritance diagram for data\+Chunk\+:
+% FIG 0
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structdataChunk_a846343045c6f7168e969f3a4f19a44e1}\label{structdataChunk_a846343045c6f7168e969f3a4f19a44e1}} 
+char {\bfseries fmt\+\_\+header} \mbox{[}4\mbox{]}
+\item 
+\mbox{\Hypertarget{structdataChunk_ab34bbfab5f9c6f68319a493844219a2e}\label{structdataChunk_ab34bbfab5f9c6f68319a493844219a2e}} 
+int {\bfseries fmt\+\_\+chunk\+\_\+size}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+wav\+Header.\+h\end{DoxyCompactItemize}

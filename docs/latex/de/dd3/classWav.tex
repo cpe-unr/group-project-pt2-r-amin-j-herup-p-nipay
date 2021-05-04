@@ -1,0 +1,63 @@
+\hypertarget{classWav}{}\section{Wav Class Reference}
+\label{classWav}\index{Wav@{Wav}}
+
+
+Collaboration diagram for Wav\+:
+% FIG 0
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classWav_a5e521ff6da3e7a3ed546d948a125847f}\label{classWav_a5e521ff6da3e7a3ed546d948a125847f}} 
+\hyperlink{structwavHeader}{wav\+Header} {\bfseries getwav\+Header} ()
+\item 
+\mbox{\Hypertarget{classWav_ab1074c8c389a6dbea588c9791a9e1659}\label{classWav_ab1074c8c389a6dbea588c9791a9e1659}} 
+unsigned char $\ast$ {\bfseries get\+Buffer} (int i)
+\item 
+\mbox{\Hypertarget{classWav_a71fdfa1d9f5e7c1b86f07bbff4249dca}\label{classWav_a71fdfa1d9f5e7c1b86f07bbff4249dca}} 
+int {\bfseries get\+Buffer\+Size} () const
+\item 
+\mbox{\Hypertarget{classWav_afbd5588a3621503ee028fbec055fd075}\label{classWav_afbd5588a3621503ee028fbec055fd075}} 
+int {\bfseries get\+Bit\+Depth} ()
+\item 
+\mbox{\Hypertarget{classWav_abfc3c1b6afed8bfc43a17cbd76f8a809}\label{classWav_abfc3c1b6afed8bfc43a17cbd76f8a809}} 
+int {\bfseries get\+Num\+Channels} ()
+\item 
+\mbox{\Hypertarget{classWav_a8dbfa6c6dc4d8a0df92b0e4cb49d0133}\label{classWav_a8dbfa6c6dc4d8a0df92b0e4cb49d0133}} 
+void {\bfseries read\+File} (const std\+::string \&filename)
+\item 
+\mbox{\Hypertarget{classWav_a3e4d48579d4c83afb0519ac8492af6d0}\label{classWav_a3e4d48579d4c83afb0519ac8492af6d0}} 
+void {\bfseries write\+File} (const std\+::string \&out\+Filename)
+\item 
+\mbox{\Hypertarget{classWav_a0c2edef046548025b4b22e70ddcc2728}\label{classWav_a0c2edef046548025b4b22e70ddcc2728}} 
+void {\bfseries print\+Meta\+Data} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classWav_aaa1fc130f301f39cc74091dfb9750d13}\label{classWav_aaa1fc130f301f39cc74091dfb9750d13}} 
+int {\bfseries buffer\+Size\+\_\+data}
+\item 
+\mbox{\Hypertarget{classWav_a78fcf3bfe5e1d602a85cf41bf23285ef}\label{classWav_a78fcf3bfe5e1d602a85cf41bf23285ef}} 
+unsigned char $\ast$$\ast$ {\bfseries buffers} = N\+U\+LL
+\item 
+\mbox{\Hypertarget{classWav_af1e9806d4b9efb6b466954771292e6b1}\label{classWav_af1e9806d4b9efb6b466954771292e6b1}} 
+std\+::vector$<$ \hyperlink{structMetaDataHeader}{Meta\+Data\+Header} $>$ {\bfseries metadata}
+\item 
+\mbox{\Hypertarget{classWav_a3d95345a678bba0772e48325306ecda1}\label{classWav_a3d95345a678bba0772e48325306ecda1}} 
+\hyperlink{structwavHeader}{wav\+Header} {\bfseries wave\+\_\+\+Header}
+\item 
+\mbox{\Hypertarget{classWav_ad56011c7baf92b85b81483d7ef8b58ef}\label{classWav_ad56011c7baf92b85b81483d7ef8b58ef}} 
+\hyperlink{structdataChunk}{data\+Chunk} {\bfseries data\+\_\+\+Chunk}
+\item 
+\mbox{\Hypertarget{classWav_a2d8b662300b2821186951e428da6a6a9}\label{classWav_a2d8b662300b2821186951e428da6a6a9}} 
+\hyperlink{structFMT}{F\+MT} {\bfseries fmt}
+\item 
+\mbox{\Hypertarget{classWav_acae0c41dcc691b4ca92b510f482c3ca1}\label{classWav_acae0c41dcc691b4ca92b510f482c3ca1}} 
+\hyperlink{classMdManager}{Md\+Manager} {\bfseries md}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+wav.\+h\item 
+wav.\+cpp\end{DoxyCompactItemize}
