@@ -15,7 +15,7 @@ protected:
     wavHeader wave_Header;
     dataChunk data_Chunk;
     FMT fmt;
-    MetaDataManager md;
+    MdManager md;
 public:
     wavHeader getwavHeader();
     unsigned char *getBuffer(int i);
@@ -28,4 +28,5 @@ public:
     ~Wav();
     
 };
+
 

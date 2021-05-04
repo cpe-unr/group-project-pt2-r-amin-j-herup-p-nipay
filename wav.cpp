@@ -174,7 +174,7 @@ void Wav::writeFile(const std::string &outFilename){
 }
 
 void Wav::printMetaData(){
-    md.printMd;
+    md.printMd();
     }
 
 Wav::~Wav(){
