@@ -1,3 +1,7 @@
+//Roohan Amin, Pamella Nipay, Josh Herup
+//Date: 3/2/2021
+//Semester Project
+
 #ifndef ECHO_H
 #define ECHO_H
 

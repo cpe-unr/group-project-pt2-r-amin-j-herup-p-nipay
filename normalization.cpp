@@ -1,3 +1,7 @@
+//Roohan Amin, Pamella Nipay, Josh Herup
+//Date: 3/2/2021
+//Semester Project
+
 #include "normalization.h"
 
 Normalization::Normalization(){
