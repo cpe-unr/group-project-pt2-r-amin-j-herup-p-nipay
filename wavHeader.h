@@ -12,12 +12,12 @@ struct dataChunk{
 };
 
 struct FMT{
+    unsigned short audio_format; //numeric id of audio format
+    unsigned short num_channels; //number of audio channels
     int sample_rate; //sample rate
     int byte_rate; //byte rate
-    short audio_format; //numeric id of audio format
-    short num_channels; //number of audio channels
-    short sample_alignment; //sample alignment
-    short bit_depth; //bitdepth
+    unsigned short sample_alignment; //sample alignment
+    unsigned short bit_depth; //bitdepth
 };
 
 struct SubChunkData: public dataChunk{

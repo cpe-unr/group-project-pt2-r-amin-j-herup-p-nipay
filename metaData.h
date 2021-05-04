@@ -12,7 +12,7 @@ private:
     
 public:
     MetaData() = default;
-    Metadata(std::ifstream&);
+    MetaData(std::ifstream&);
     
     std:: string getMdID() const;
     void setMdID(char) const;
