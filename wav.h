@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "wavHeader.h"
-#include "metaDataManager.cpp"
+#include "metaDataManager.h"
 
 class Wav{
 protected:

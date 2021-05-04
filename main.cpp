@@ -4,9 +4,7 @@
 #include <fstream>
 
 #include "menu.h"
-#include "wav.h"
-#include "metaData.h"
-#include "normalization.h"
+
 /**
  * \brief   The function bar.
  *

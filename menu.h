@@ -9,10 +9,10 @@
 #include <string>
 #include "processor.h"
 #include "wavHeader.h"
-#include "wav.cpp"
-#include "echo.cpp"
-#include "noiseGate.cpp"
-#include "normalization.cpp"
+#include "wav.h"
+#include "echo.h"
+#include "noiseGate.h"
+#include "normalization.h"
 //#include the wav guys
 
 using namespace std;
