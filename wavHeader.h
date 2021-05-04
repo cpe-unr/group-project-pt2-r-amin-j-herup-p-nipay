@@ -1,16 +1,25 @@
 #pragma once
-
+/**
+ * @brief These are bytes 0 through 12 of the wav file.
+ * 
+ */
 struct wavHeader{
     char riff_header[4]; //RIFF
     char wave_header[4]; //WAVE
     int wav_size; //total size of file in bytes - 8
 };
-
+/**
+ * @brief These are bytes 12 through 36 of the wav file.
+ * 
+ */
 struct dataChunk{
     char fmt_header[4]; //DATA
     int fmt_chunk_size; //size of chunk in bytes
 };
-
+/**
+ * @brief These are bytes 12 through 36 of the wav file.
+ * 
+ */
 struct FMT{
     unsigned short audio_format; //numeric id of audio format
     unsigned short num_channels; //number of audio channels
@@ -20,7 +29,11 @@ struct FMT{
     unsigned short sample_alignment; //sample alignment
     unsigned short bit_depth; //bitdepth
 };
-
+/**
+ * @brief These are bytes 12 through 36 of the wav file.
+ * 
+ */
 struct SubChunkData: public dataChunk{
     char *buffer;
 };
+

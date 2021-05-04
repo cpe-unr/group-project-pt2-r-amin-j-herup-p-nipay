@@ -16,7 +16,11 @@
 //#include the wav guys
 
 using namespace std;
-
+/**
+ * @brief Menu class that is templated.
+ * 
+ * @tparam T - data type parameter
+ */
 template<typename T>
 class menu{
 
@@ -26,23 +30,44 @@ class menu{
 	//void wavManager, wavIO;
 
     public:
-	//default ctor
+	/**
+	 * @brief Construct a new menu object
+	 * 
+	 */
 	menu();
-	//parameterized ctor
+	/**
+	 * @brief Construct a new menu object
+	 * 
+	 * @param userChoice 
+	 */
 	menu(T userChoice);
 
 	//int getMenuChoice();
-
+	/**
+	 * @brief Method for the menu class switch statement.
+	 * 
+	 * @param fileName - Reads inputted file
+	 * @return T - integer
+	 */
 	T switchState(string fileName);
 
 };
-
+/**
+ * @brief Construct a new menu<T>::menu object
+ * 
+ * @tparam T 
+ */
 template<typename T>
 menu<T>::menu(){
     userChoice = 0;
 }
 
-//parameterized ctor
+/**
+ * @brief Construct a new menu<T>::menu object
+ * 
+ * @tparam T 
+ * @param userChoice - Holds the user's input
+ */
 template<typename T>
 menu<T>::menu(T userChoice) : userChoice(userChoice){
 }
@@ -100,7 +125,7 @@ T menu<T>::switchState(string fileName){
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
 											//cout << "Normalize, gate, echo, 8bit mono" << endl;
-											/*int size = wav.getBufferSize();
+											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer();
 											Processor *normalization = new Normalization(5);
 											normalization->processorMonoE(size, buffer);
@@ -108,7 +133,7 @@ T menu<T>::switchState(string fileName){
 											noiseGate->processorMonoE(size, buffer);
 											Processor *echo = new Echo(1000);
 											echo->processorMonoE(size, buffer);
-											break;*/
+											break;
 										}
 										else if(wav.getNumChannels() == 2){
 
@@ -146,13 +171,13 @@ T menu<T>::switchState(string fileName){
 									cout << "Alright, one normalization and one noise gate coming right up!" << endl;
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
-											/*int size = wav.getBufferSize();
+											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer();
 											Processor *normalization = new Normalization(5);
 											normalization->processorMonoE(size, buffer);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
-											break;*/
+											break;
 										}
 										else if(wav.getNumChannels() == 2){
 
@@ -188,7 +213,7 @@ T menu<T>::switchState(string fileName){
 									cout << "One normalization, one echo, and one noise gate coming right up!" << endl;
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
-											/*int size = wav.getBufferSize();
+											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer();
 											Processor *normalization = new Normalization(5);
 											normalization->processorMonoE(size, buffer);
@@ -196,7 +221,7 @@ T menu<T>::switchState(string fileName){
 											echo->processorMonoE(size, buffer);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
-											break;*/
+											break;
 										}
 										else if(wav.getNumChannels() == 2){
 
@@ -227,13 +252,13 @@ T menu<T>::switchState(string fileName){
 									cout << "Alright, one normalization and one echo coming right up!" << endl;
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
-											/*int size = wav.getBufferSize();
+											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer();
 											Processor *normalization = new Normalization(5);
 											normalization->processorMonoE(size, buffer);
 											Processor *echo = new Echo(1000);
 											echo->processorMonoE(size, buffer);
-											break;*/
+											break;
 										}
 										else if(wav.getNumChannels() == 2){
 
@@ -266,11 +291,11 @@ T menu<T>::switchState(string fileName){
 						cout << "Alright, just the normalization, coming right up!" << endl;
 						if(wav.getBitDepth() == 8){
 							if(wav.getNumChannels() == 1){
-								/*int size = wav.getBufferSize();
+								int size = wav.getBufferSize();
 								unsigned char* buffer = wav.getBuffer();
 								Processor *normalization = new Normalization(5);
 								normalization->processorMonoE(size, buffer);
-								break;*/
+								break;
 							}
 							else if(wav.getNumChannels() == 2){
 
@@ -319,7 +344,7 @@ T menu<T>::switchState(string fileName){
 									cout << "All three comin right up!" << endl;
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
-											/*int size = wav.getBufferSize();
+											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer();
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
@@ -327,7 +352,7 @@ T menu<T>::switchState(string fileName){
 											normalization->processorMonoE(size, buffer);
 											Processor *echo = new Echo(1000);
 											echo->processorMonoE(size, buffer);
-											break;*/
+											break;
 										}
 										else if(wav.getNumChannels() == 2){
 
@@ -358,13 +383,13 @@ T menu<T>::switchState(string fileName){
 									cout << "Alright, just noise gate and normalization." << endl;
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
-											/*int size = wav.getBufferSize();
+											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer();
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
 											Processor *normalization = new Normalization(5);
 											normalization->processorMonoE(size, buffer);
-											break;*/
+											break;
 										}
 										else if(wav.getNumChannels() == 2){
 
@@ -400,7 +425,7 @@ T menu<T>::switchState(string fileName){
 									cout << "All three coming right up!" << endl;
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
-											/*int size = wav.getBufferSize();
+											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer();
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
@@ -408,7 +433,7 @@ T menu<T>::switchState(string fileName){
 											echo->processorMonoE(size, buffer);
 											Processor *normalization = new Normalization(5);
 											normalization->processorMonoE(size, buffer);
-											break;*/
+											break;
 										}
 										else if(wav.getNumChannels() == 2){
 
@@ -439,13 +464,13 @@ T menu<T>::switchState(string fileName){
 									cout << "Alright, just noise gate and echo." << endl;
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
-											/*int size = wav.getBufferSize();
+											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer();
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
 											Processor *echo = new Echo(1000);
 											echo->processorMonoE(size, buffer);
-											break;*/
+											break;
 										}
 										else if(wav.getNumChannels() == 2){
 
@@ -478,11 +503,11 @@ T menu<T>::switchState(string fileName){
 						cout << "Alright, just the noise gate, comin right up!" << endl;
 						if(wav.getBitDepth() == 8){
 							if(wav.getNumChannels() == 1){
-								/*int size = wav.getBufferSize();
+								int size = wav.getBufferSize();
 								unsigned char* buffer = wav.getBuffer();
 								Processor *noiseGate = new NoiseGate(2);
 								noiseGate->processorMonoE(size, buffer);
-								break;*/
+								break;
 							}
 							else if(wav.getNumChannels() == 2){
 
@@ -530,7 +555,7 @@ T menu<T>::switchState(string fileName){
 									cout << "All three comin right up!" << endl;
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
-											/*int size = wav.getBufferSize();
+											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer();
 											Processor *echo = new Echo(1000);
 											echo->processorMonoE(size, buffer);
@@ -538,7 +563,7 @@ T menu<T>::switchState(string fileName){
 											normalization->processorMonoE(size, buffer);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
-											break;*/
+											break;
 										}
 										else if(wav.getNumChannels() == 2){
 
@@ -569,13 +594,13 @@ T menu<T>::switchState(string fileName){
 									cout << "Alright just echo and normalization." << endl;
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
-											/*int size = wav.getBufferSize();
+											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer();
 											Processor *echo = new Echo(1000);
 											echo->processorMonoE(size, buffer);
 											Processor *normalization = new Normalization(5);
 											normalization->processorMonoE(size, buffer);
-											break;*/
+											break;
 										}
 										else if(wav.getNumChannels() == 2){
 
@@ -612,7 +637,7 @@ T menu<T>::switchState(string fileName){
 
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
-											/*int size = wav.getBufferSize();
+											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer();
 											Processor *echo = new Echo(1000);
 											echo->processorMonoE(size, buffer);
@@ -620,7 +645,7 @@ T menu<T>::switchState(string fileName){
 											noiseGate->processorMonoE(size, buffer);
 											Processor *normalization = new Normalization(5);
 											normalization->processorMonoE(size, buffer);
-											break;*/
+											break;
 										}
 										else if(wav.getNumChannels() == 2){
 
@@ -650,13 +675,13 @@ T menu<T>::switchState(string fileName){
 									cout << "Alright just echo and noise gate." << endl;
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
-											/*int size = wav.getBufferSize();
+											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer();
 											Processor *echo = new Echo(1000);
 											echo->processorMonoE(size, buffer);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
-											break;*/
+											break;
 										}
 										else if(wav.getNumChannels() == 2){
 
@@ -708,3 +733,4 @@ T menu<T>::switchState(string fileName){
 	}while(userChoice != 0);
 }
 #endif
+

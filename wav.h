@@ -5,27 +5,65 @@
 #include <vector>
 
 #include "wavHeader.h"
-#include "metaDataManager.h"
-
+/**
+ * @brief Wav class that allows for transfer to buffer
+ * 
+ */
 class Wav{
 protected:
     int bufferSize_data;
-    unsigned char** buffers = NULL;
+    unsigned char* buffer = NULL;
+    int bitDepth;
+    int numChannels;
     std::vector <SubChunkData> metadata;
     wavHeader wave_Header;
     dataChunk data_Chunk;
     FMT fmt;
-    MetaDataManager md;
 public:
+    /**
+     * @brief Generates wavHeader
+     * 
+     * @return wavHeader 
+     */
     wavHeader getwavHeader();
-    unsigned char *getBuffer(int i);
+    /**
+     * @brief Get the Buffer object
+     * 
+     * @return unsigned char* 
+     */
+    unsigned char *getBuffer();
+    /**
+     * @brief Get the Buffer Size object
+     * 
+     * @return int 
+     */
     int getBufferSize() const;
+    /**
+     * @brief Get the Bit Depth object
+     * 
+     * @return int 
+     */
     int getBitDepth();
+    /**
+     * @brief Get the Num Channels object
+     * 
+     * @return int 
+     */
     int getNumChannels();
+    /**
+     * @brief Read in file via pass by reference
+     * 
+     * @param filename 
+     */
     void readFile(const std::string &filename);
+    /**
+     * @brief Write to the wav file
+     * 
+     * @param outFilename 
+     */
     void writeFile(const std::string &outFilename);
-    void printMetaData();
     ~Wav();
     
 };
+
 
