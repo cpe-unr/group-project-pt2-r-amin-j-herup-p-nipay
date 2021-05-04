@@ -1,7 +1,7 @@
 TARGET = audiomanagement
 LIBS = -lm  #List of external libraries required to link against (here m is the math Library, just a placeholder)
-HEADERS = wav.h wavHeader.h echo.h menu.h metaData.h metaDataHeader.h metaDataManager.h noiseGate.h normalization.h processor.h #List of all header files
-SRCS = main.cpp wav.cpp echo.cpp menu.cpp metaData.cpp metaDataManager.cpp noiseGate.cpp normalization.cpp #List of all source files
+HEADERS = wav.h wavHeader.h echo.h menu.h metaDataHeader.h metaDataManager.h noiseGate.h normalization.h processor.h #List of all header files
+SRCS = main.cpp wav.cpp echo.cpp menu.cpp metaDataManager.cpp noiseGate.cpp normalization.cpp #List of all source files
 OBJECTS := $(patsubst %.cpp,%.o,$(SRCS))  #Creates a list of object files (.o) for every entry under SRCS (source files)
 CXX = g++ #compiler command to be used
 CXX_FLAGS = -Wall -std=c++11 -g #compilation flags to be used (here std=c++11 is just for reference, not necessary)

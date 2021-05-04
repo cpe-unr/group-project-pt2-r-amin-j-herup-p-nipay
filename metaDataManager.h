@@ -5,7 +5,8 @@
 
 #pragma once
 
-#include "metaData.h"
+#pragma once
+
 #include "metaDataHeader.h"
 #include <vector>
 
@@ -36,6 +37,7 @@ public:
     char getMdID() const;
 
     char getBuffer() const;
+    void setBuffer(std::string);
 
     char getINAM() const;
 

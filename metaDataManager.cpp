@@ -23,51 +23,102 @@ MdManager::MdManager(std::ifstream& file){
     }
 }
 
-char MdManager::getMdID() const{
-    return meta_data.list_ID();
-}
 
 int MdManager::getMdSize() const{
     return meta_data.list_size();
 }
 
-char MdManager::getMdID() const{
-    return meta_data.info_ID();
+char MdManager::getMdID() const{ //convert char to string
+    std::string dString;
+    for(char chunk : list_ID){
+        dstring.push_back(chunk);
+    }
+    dstring.push_back('\0');
+    
+    return dstring;;
 }
 
 char MdManager::getBuffer() const{
-    return buffer;
+    std::string bString;
+    for(char chunk : list_ID){
+        bstring.push_back(chunk);
+    }
+    bstring.push_back('\0');
+    
+    return bstring;
+}
+void MdManager::setBuffer(std::string newBuffer){
+    this->buffer = newBuffer;
 }
 
 char MdManager::getINAM() const{
-    return meta_data.INAM();
+    std::string iString;
+    for(char chunk : list_ID){
+        istring.push_back(chunk);
+    }
+    istring.push_back('\0');
+    
+    return istring;;
+   
 }
 
 char MdManager::getIART() const{
-    return meta_data.IART();
+    std::string aString;
+    for(char chunk : IART){
+        astring.push_back(chunk);
+    }
+    astring.push_back('\0');
+    
+    return astring;
+;
 }
 
 char MdManager::getIGNR() const{
-    return meta_data.IGNR();
+    std::string aString;
+    for(char chunk : IGNR){
+        gstring.push_back(chunk);
+    }
+    gstring.push_back('\0');
+    
+    return gstring;;
+ 
 }
 
 char MdManager::getICRD() const{
-    return meta_data.ICRD();
+    std::string cString;
+    for(char chunk : ICRD){
+        cstring.push_back(chunk);
+    }
+    cstring.push_back('\0');
+    
+    return cstring;;
+   
 }
 
 char MdManager::getITRK() const{
-    return meta_data.ITRK();
+    std::string tString;
+    for(char chunk : ITRK){
+        tstring.push_back(chunk);
+    }
+    tstring.push_back('\0');
+    
+    return tstring;;
+
 }
 
 char MdManager::getICMT() const{
-    return meta_data.ICMT();
+    std::string mString;
+    for(char chunk : ICMT){
+        mstring.push_back(chunk);
+    }
+    mstring.push_back('\0');
+    
+    return mstring;
 }
 
 void MdManager::printMd(){
     for(MetaData& metaD : meta_data){
-        std::cout << metaD.getMdID() << '\n' << metaD.getMdSize() << '\n' << metaD.getBuffer() << '\n Song Title: ' << metaD.getINAM << '\n Artist: ' << metaD.getIART << '\n Genre: ' << metaD.getIGNR << '\n Release: ' << metaD.getICRD << '\n Track Number: ' << metaD.getITRK << '\n Comments: '<< metaD.getICMT << std::endl;
+        std::cout << metaD.getMdID() << '\n' << metaD.getMdSize() << '\n Info: ' << metaD.getMdInfo() << '\n Song Title: ' << metaD.getINAM << '\n Artist: ' << metaD.getIART << '\n Genre: ' << metaD.getIGNR << '\n Release: ' << metaD.getICRD << '\n Track Number: ' << metaD.getITRK << '\n Comments: '<< metaD.getICMT << std::endl;
     }
 }
-
-
 
