@@ -29,7 +29,6 @@ int main(int argc, char* const argv[]){
 		return 0;
 	}
 	wavFile.close();
-
     menu<int> menuObj;
     menuObj.switchState(file);
     return 0;

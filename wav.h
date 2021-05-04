@@ -15,7 +15,7 @@ class Wav{
 protected:
     int bufferSize_data;
     unsigned char** buffers = NULL;
-    std::vector <SubChunkData> metadata;
+    std::vector <MetaDataHeader> metadata;
     wavHeader wave_Header;
     dataChunk data_Chunk;
     FMT fmt;
@@ -32,4 +32,5 @@ public:
     ~Wav();
     
 };
+
 
