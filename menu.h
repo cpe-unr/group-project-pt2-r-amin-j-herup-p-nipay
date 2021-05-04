@@ -8,6 +8,11 @@
 #include <iostream>
 #include <string>
 #include "wav.h"
+#include "processor.h"
+#include "echo.h"
+#include "noiseGate.h"
+#include "normalization.h"
+#include "wavHeader.h"
 //#include the wav guys
 
 using namespace std;
@@ -92,27 +97,209 @@ T menu<T>::switchState(string fileName){
 						    		cin >> Yn2;
 								if(Yn2 == 1){
 									cout << "One normalization, one noise gate, and one echo coming right up!" << endl;
-									//add all three and break
+									if(wav.getBitDepth() == 8){
+										if(wav.getNumChannels() == 1){
+											//cout << "Normalize, gate, echo, 8bit mono" << endl;
+											int size = wav.getBufferSize();
+											unsigned char* buffer = wav.getBuffer();
+											Processor *normalization = new Normalization(5);
+											normalization->processorMonoE(size, buffer);
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorMonoE(size, buffer);
+											Processor *echo = new Echo(1000);
+											echo->processorMonoE(size, buffer);
+											break;
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}
+									}
+									else if(wav.getBitDepth() == 16){
+										if(wav.getNumChannels() == 1){
+											/*int size = wav.getBufferSize();
+											short* buffer = wav.getBuffer();
+											Processor *normalization = new Normalization(5);
+											normalization->processorMonoS(size, buffer);
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorMonoS(size, buffer);
+											Processor *echo = new Echo(1000);
+											echo->processorMonoS(size, buffer);*/
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}	
+									}
+									else{
+										cout << "Invalid audio file." << endl;
+										break;
+									}
+									//add normailization then noise gate then echo then break
 								}else if(Yn2 == 2){
 									cout << "Alright, one normalization and one noise gate coming right up!" << endl;
-									//add two and break;
+									if(wav.getBitDepth() == 8){
+										if(wav.getNumChannels() == 1){
+											int size = wav.getBufferSize();
+											unsigned char* buffer = wav.getBuffer();
+											Processor *normalization = new Normalization(5);
+											normalization->processorMonoE(size, buffer);
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorMonoE(size, buffer);
+											break;
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}
+									}
+									else if(wav.getBitDepth() == 16){
+										if(wav.getNumChannels() == 1){
+
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}	
+									}
+									else{
+										cout << "Invalid audio file." << endl;
+										break;
+									}
+									//add normalization and noise gate and break
 								}
+								break;
 							case 2:
 						    		cout << "One normalization and one echo coming right up, do you want to noise gate your file as well? (enter 1 for yes and 2 for no) " << endl;
 						   		cin >> Yn3;
 								if(Yn3 == 1){
 									cout << "One normalization, one echo, and one noise gate coming right up!" << endl;
-									//add all three and break;
+									if(wav.getBitDepth() == 8){
+										if(wav.getNumChannels() == 1){
+											int size = wav.getBufferSize();
+											unsigned char* buffer = wav.getBuffer();
+											Processor *normalization = new Normalization(5);
+											normalization->processorMonoE(size, buffer);
+											Processor *echo = new Echo(1000);
+											echo->processorMonoE(size, buffer);
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorMonoE(size, buffer);
+											break;
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}
+									}
+									else if(wav.getBitDepth() == 16){
+										if(wav.getNumChannels() == 1){
+
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}	
+									}
+									else{
+										cout << "Invalid audio file." << endl;
+										break;
+									}
+									//add normailization then echo then noise gate then break;
 								}else if(Yn3 == 2){
 									cout << "Alright, one normalization and one echo coming right up!" << endl;
+									if(wav.getBitDepth() == 8){
+										if(wav.getNumChannels() == 1){
+											int size = wav.getBufferSize();
+											unsigned char* buffer = wav.getBuffer();
+											Processor *normalization = new Normalization(5);
+											normalization->processorMonoE(size, buffer);
+											Processor *echo = new Echo(1000);
+											echo->processorMonoE(size, buffer);
+											break;
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}
+									}
+									else if(wav.getBitDepth() == 16){
+										if(wav.getNumChannels() == 1){
+
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}	
+									}
+									else{
+										cout << "Invalid audio file." << endl;
+										break;
+									}
+									//add normalization and echo and break
 								}
 					        }
 					}else if(Yn == 2){
 						cout << "Alright, just the normalization, coming right up!" << endl;
+						if(wav.getBitDepth() == 8){
+							if(wav.getNumChannels() == 1){
+								int size = wav.getBufferSize();
+								unsigned char* buffer = wav.getBuffer();
+								Processor *normalization = new Normalization(5);
+								normalization->processorMonoE(size, buffer);
+								break;
+							}
+							else if(wav.getNumChannels() == 2){
+
+							}
+							else{
+								cout << "Invalid audio file." << endl;
+								break;
+							}
+						}
+						else if(wav.getBitDepth() == 16){
+							if(wav.getNumChannels() == 1){
+
+							}
+							else if(wav.getNumChannels() == 2){
+
+							}
+							else{
+								cout << "Invalid audio file." << endl;
+								break;
+							}	
+						}
+						else{
+							cout << "Invalid audio file." << endl;
+							break;
+						}
 						//add normalization and break
 						break;
 					}
-					
+					break;
 			    case 2:
 					cout << "One noise gate coming right up, if you want to process another way, enter 1 for yes and 2 for no " << endl;
 					cin >> Yn4;
@@ -130,24 +317,200 @@ T menu<T>::switchState(string fileName){
 						    		cin >> Yn5;
 								if(Yn5 == 1){
 									cout << "All three comin right up!" << endl;
-									//add all three and break;
+									if(wav.getBitDepth() == 8){
+										if(wav.getNumChannels() == 1){
+											int size = wav.getBufferSize();
+											unsigned char* buffer = wav.getBuffer();
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorMonoE(size, buffer);
+											Processor *normalization = new Normalization(5);
+											normalization->processorMonoE(size, buffer);
+											Processor *echo = new Echo(1000);
+											echo->processorMonoE(size, buffer);
+											break;
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}
+									}
+									else if(wav.getBitDepth() == 16){
+										if(wav.getNumChannels() == 1){
+
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}	
+									}
+									else{
+										cout << "Invalid audio file." << endl;
+										break;
+									}
+									//add noise gate then normalization then echo then break;
 								}else if(Yn5 == 2){
 									cout << "Alright, just noise gate and normalization." << endl;
-									//add two and break;
+									if(wav.getBitDepth() == 8){
+										if(wav.getNumChannels() == 1){
+											int size = wav.getBufferSize();
+											unsigned char* buffer = wav.getBuffer();
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorMonoE(size, buffer);
+											Processor *normalization = new Normalization(5);
+											normalization->processorMonoE(size, buffer);
+											break;
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}
+									}
+									else if(wav.getBitDepth() == 16){
+										if(wav.getNumChannels() == 1){
+
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}	
+									}
+									else{
+										cout << "Invalid audio file." << endl;
+										break;
+									}	
+									//add noise gate then normalization then break;
 								}
+								break;
 							case 2:
 								cout << "One noise gate and one echo comin right up, do you want to normalize as well? (enter 1 for yes and 2 for no) " << endl;
 								cin >> Yn6;
 								if(Yn6 == 1){
 									cout << "All three coming right up!" << endl;
+									if(wav.getBitDepth() == 8){
+										if(wav.getNumChannels() == 1){
+											int size = wav.getBufferSize();
+											unsigned char* buffer = wav.getBuffer();
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorMonoE(size, buffer);
+											Processor *echo = new Echo(1000);
+											echo->processorMonoE(size, buffer);
+											Processor *normalization = new Normalization(5);
+											normalization->processorMonoE(size, buffer);
+											break;
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}
+									}
+									else if(wav.getBitDepth() == 16){
+										if(wav.getNumChannels() == 1){
+
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}	
+									}
+									else{
+										cout << "Invalid audio file." << endl;
+										break;
+									}
+									//add noise gate then echo then normalization then break
 								}else if(Yn6 == 2){
 									cout << "Alright, just noise gate and echo." << endl;
-									//add two and break;
+									if(wav.getBitDepth() == 8){
+										if(wav.getNumChannels() == 1){
+											int size = wav.getBufferSize();
+											unsigned char* buffer = wav.getBuffer();
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorMonoE(size, buffer);
+											Processor *echo = new Echo(1000);
+											echo->processorMonoE(size, buffer);
+											break;
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}
+									}
+									else if(wav.getBitDepth() == 16){
+										if(wav.getNumChannels() == 1){
+
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}	
+									}
+									else{
+										cout << "Invalid audio file." << endl;
+										break;
+									}
+									//add noise gate then echo and break
 								}
 						}
 					}else if(Yn4 == 2){
 						cout << "Alright, just the noise gate, comin right up!" << endl;
+						if(wav.getBitDepth() == 8){
+							if(wav.getNumChannels() == 1){
+								int size = wav.getBufferSize();
+								unsigned char* buffer = wav.getBuffer();
+								Processor *noiseGate = new NoiseGate(2);
+								noiseGate->processorMonoE(size, buffer);
+								break;
+							}
+							else if(wav.getNumChannels() == 2){
+
+							}
+							else{
+								cout << "Invalid audio file." << endl;
+								break;
+							}
+						}
+						else if(wav.getBitDepth() == 16){
+							if(wav.getNumChannels() == 1){
+
+							}
+							else if(wav.getNumChannels() == 2){
+
+							}
+							else{
+								cout << "Invalid audio file." << endl;
+								break;
+							}	
+						}
+						else{
+							cout << "Invalid audio file." << endl;
+							break;
+						}
+						//add noise gate then break;
 					}
+					break;
 				case 3:
 					cout << "One echo coming right up, if you want to process another way, enter 1 for yes and 2 for no " << endl;
 					cin >> Yn7;
@@ -165,18 +528,161 @@ T menu<T>::switchState(string fileName){
 						   		cin >> Yn8;
 								if(Yn8 == 1){
 									cout << "All three comin right up!" << endl;
-									//add three and break;
+									if(wav.getBitDepth() == 8){
+										if(wav.getNumChannels() == 1){
+											int size = wav.getBufferSize();
+											unsigned char* buffer = wav.getBuffer();
+											Processor *echo = new Echo(1000);
+											echo->processorMonoE(size, buffer);
+											Processor *normalization = new Normalization(5);
+											normalization->processorMonoE(size, buffer);
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorMonoE(size, buffer);
+											break;
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}
+									}
+									else if(wav.getBitDepth() == 16){
+										if(wav.getNumChannels() == 1){
+
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}	
+									}
+									else{
+										cout << "Invalid audio file." << endl;
+										break;
+									}
+									//add echo then normalization then noise gate then break
 								}else if(Yn8 == 2){
 									cout << "Alright just echo and normalization." << endl;
+									if(wav.getBitDepth() == 8){
+										if(wav.getNumChannels() == 1){
+											int size = wav.getBufferSize();
+											unsigned char* buffer = wav.getBuffer();
+											Processor *echo = new Echo(1000);
+											echo->processorMonoE(size, buffer);
+											Processor *normalization = new Normalization(5);
+											normalization->processorMonoE(size, buffer);
+											break;
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}
+									}
+									else if(wav.getBitDepth() == 16){
+										if(wav.getNumChannels() == 1){
+
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}	
+									}
+									else{
+										cout << "Invalid audio file." << endl;
+										break;
+									}
+									//add echo then normalization then break
 								}
+								break;
 							case 2:
 								cout << "One echo and one noise gate coming right up, do you want to normalize your file as well? (enter 1 for yes and 2 for no) " << endl;
 								cin >> Yn9;
 							    	if(Yn9 == 1){
 									cout << "All three comin right up!" << endl;
+
+									if(wav.getBitDepth() == 8){
+										if(wav.getNumChannels() == 1){
+											int size = wav.getBufferSize();
+											unsigned char* buffer = wav.getBuffer();
+											Processor *echo = new Echo(1000);
+											echo->processorMonoE(size, buffer);
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorMonoE(size, buffer);
+											Processor *normalization = new Normalization(5);
+											normalization->processorMonoE(size, buffer);
+											break;
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}
+									}
+									else if(wav.getBitDepth() == 16){
+										if(wav.getNumChannels() == 1){
+
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}	
+									}
+									else{
+										cout << "Invalid audio file." << endl;
+										break;
+									}									//add echo then noise gate then normalization then break
 							    	}else if(Yn9 == 2){
 									cout << "Alright just echo and noise gate." << endl;
-									//add two and break;
+									if(wav.getBitDepth() == 8){
+										if(wav.getNumChannels() == 1){
+											int size = wav.getBufferSize();
+											unsigned char* buffer = wav.getBuffer();
+											Processor *echo = new Echo(1000);
+											echo->processorMonoE(size, buffer);
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorMonoE(size, buffer);
+											break;
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}
+									}
+									else if(wav.getBitDepth() == 16){
+										if(wav.getNumChannels() == 1){
+
+										}
+										else if(wav.getNumChannels() == 2){
+
+										}
+										else{
+											cout << "Invalid audio file." << endl;
+											break;
+										}	
+									}
+									else{
+										cout << "Invalid audio file." << endl;
+										break;
+									}
+									//add echo then noise gate then break;
 							    	}
 						}
 					}

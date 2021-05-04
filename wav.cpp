@@ -12,6 +12,9 @@ wavHeader Wav::getwavHeader(){
 unsigned char *Wav::getBuffer(){
     return buffer;
 }
+int Wav::getBufferSize() const{
+	return fmt.data_bytes;
+}
 int Wav::getBitDepth(){
 	return fmt.bit_depth;
 }
