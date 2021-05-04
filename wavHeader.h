@@ -16,6 +16,7 @@ struct FMT{
     unsigned short num_channels; //number of audio channels
     int sample_rate; //sample rate
     int byte_rate; //byte rate
+    int data_bytes;
     unsigned short sample_alignment; //sample alignment
     unsigned short bit_depth; //bitdepth
 };

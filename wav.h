@@ -19,7 +19,7 @@ protected:
 public:
     wavHeader getwavHeader();
     unsigned char *getBuffer();
-    int getBufferSize();
+    int getBufferSize() const;
     int getBitDepth();
     int getNumChannels();
     void readFile(const std::string &filename);
