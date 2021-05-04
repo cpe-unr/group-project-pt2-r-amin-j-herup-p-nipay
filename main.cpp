@@ -1,6 +1,7 @@
 
 /** @file */
 #include <iostream>
+#include <fstream>
 
 #include "menu.h"
 #include "wav.h"
@@ -35,6 +36,16 @@ int main(int argc, char* const argv[]){
         std::cout << argv[0] << " filename" << std::endl;
         return 0;
     }
+	std::string file = argv[1];
+	std::ifstream wavFile;
+	wavFile.open(file);
+
+
+	if(wavFile.fail()){
+		std::cout << "File " << file << " could not be opened." << std::endl;
+		return 0;
+	}
+	wavFile.close();
     /*
     WavManager wavM(argv[1]);
     if(wavM.getSize() < 1){
