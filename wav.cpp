@@ -169,7 +169,9 @@ void Wav::writeFile(const std::string &outFilename){
     outFile.write((char*)buffer, bufferSize_data);
 */
 }
-
+void Wav::printMetaData(){
+    md.printMd();
+}
 Wav::~Wav(){
    /* if(buffer != NULL){
         delete[] buffer;

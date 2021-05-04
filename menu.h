@@ -7,12 +7,12 @@
 
 #include <iostream>
 #include <string>
-#include "wav.h"
 #include "processor.h"
-#include "echo.h"
-#include "noiseGate.h"
-#include "normalization.h"
 #include "wavHeader.h"
+#include "wav.cpp"
+#include "echo.cpp"
+#include "noiseGate.cpp"
+#include "normalization.cpp"
 //#include the wav guys
 
 using namespace std;
@@ -33,7 +33,7 @@ class menu{
 
 	//int getMenuChoice();
 
-	T switchState(string fileName);
+	void switchState(string fileName);
 
 };
 
@@ -48,7 +48,7 @@ menu<T>::menu(T userChoice) : userChoice(userChoice){
 }
 
 template<typename T>
-T menu<T>::switchState(string fileName){
+void menu<T>::switchState(string fileName){
 //wavManager and wavIO class, pass in objects of those class to menu, in default ctor of menu set equal to class, and in main.cpp wavManager and wavIO get created first, then create menu and pass in objects via constructor
 	Wav wav;
 	wav.readFile(fileName);
