@@ -12,7 +12,7 @@ std::string MetaData:: getMdID() const{
     for(char chunk : mdID){
         dstring.push_back(chunk);
     }
-    str.push_back('\0');
+    dstring.push_back('\0');
     return dstring;
 }
 
