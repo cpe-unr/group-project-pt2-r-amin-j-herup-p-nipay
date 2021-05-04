@@ -135,10 +135,13 @@ void Wav::writeFile(const std::string &outFilename){
     outFile.write((char*)&fmt, sizeof(FMT));
     outFile.write("data", 4);
     outFile.write((char*)&bufferSize_data, sizeof(bufferSize_data));
+    outFile.write("list", 4);
+    //outfile.write((char*))
     int bytes_per_sample = fmt.bit_depth / 8;
     for (int i = 0; i < bufferSize_data; i++) {
         outFile.write((char*)&(buffers[i / bytes_per_sample % fmt.num_channels][i / fmt.num_channels]), 1);
     }
+
 
 /*
     std::ofstream outFile(outFilename, std::ios::out | std::ios::binary);
@@ -169,6 +172,10 @@ void Wav::writeFile(const std::string &outFilename){
     outFile.write((char*)buffer, bufferSize_data);
 */
 }
+
+void Wav::printMetaData(){
+    md.printMd;
+    }
 
 Wav::~Wav(){
    /* if(buffer != NULL){
