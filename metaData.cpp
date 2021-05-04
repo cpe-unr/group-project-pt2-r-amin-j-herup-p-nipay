@@ -30,6 +30,6 @@ std:: string MetaData::getBuffer() const{
     return buffer;
 }
 
-void MetaData::setBuffer(std::string buffer){
-    this->buffer = buffer;
+void MetaData::setBuffer(std::string newBuffer){
+    this->buffer = newBuffer;
 }

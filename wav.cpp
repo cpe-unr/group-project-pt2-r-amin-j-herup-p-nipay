@@ -184,4 +184,3 @@ Wav::~Wav(){
 }
 
 
-//missing vectors, perserving it in vector, print out
