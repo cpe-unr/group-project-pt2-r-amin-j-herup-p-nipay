@@ -1,5 +1,5 @@
 //Roohan Amin, Pamella Nipay, Josh Herup
-//Date: 5/2/2021
+//Date: 3/2/2021
 //Semester Project
 
 #ifndef MENU_H
@@ -21,8 +21,9 @@ template<typename T>
 class menu{
 
     private:
-	T userChoice, userChoice2, userChoice3, userChoice4, userChoice5;
+	T userChoice, userChoice2, userChoice5, userChoice4, userChoice3;
 	T Yn, Yn2, Yn3, Yn4, Yn5, Yn6, Yn7, Yn8, Yn9;
+	string outFileName;
 	//void wavManager, wavIO;
 
     public:
@@ -102,11 +103,11 @@ void menu<T>::switchState(string fileName){
 											cout << "Normalize, gate, echo, 8bit mono" << endl;
 											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer(0);
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorMonoE(size, buffer);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorMonoE(size, buffer);
 											break;
 										}
@@ -115,11 +116,11 @@ void menu<T>::switchState(string fileName){
 											int newSize = size/2;
 											unsigned char* bufferL = wav.getBuffer(0);
 											unsigned char* bufferR = wav.getBuffer(1);
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
 											break;
 										}
@@ -132,11 +133,11 @@ void menu<T>::switchState(string fileName){
 										if(wav.getNumChannels() == 1){
 											/*int size = wav.getBufferSize();
 											short* buffer = wav.getBuffer();
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorMonoS(size, buffer);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoS(size, buffer);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorMonoS(size, buffer);*/
 										}
 										else if(wav.getNumChannels() == 2){
@@ -158,7 +159,7 @@ void menu<T>::switchState(string fileName){
 										if(wav.getNumChannels() == 1){
 											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer(0);
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorMonoE(size, buffer);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
@@ -169,7 +170,7 @@ void menu<T>::switchState(string fileName){
 											int newSize = size/2;
 											unsigned char* bufferL = wav.getBuffer(0);
 											unsigned char* bufferR = wav.getBuffer(1);
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
@@ -208,9 +209,9 @@ void menu<T>::switchState(string fileName){
 										if(wav.getNumChannels() == 1){
 											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer(0);
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorMonoE(size, buffer);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorMonoE(size, buffer);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
@@ -221,9 +222,9 @@ void menu<T>::switchState(string fileName){
 											int newSize = size/2;
 											unsigned char* bufferL = wav.getBuffer(0);
 											unsigned char* bufferR = wav.getBuffer(1);
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
@@ -257,9 +258,9 @@ void menu<T>::switchState(string fileName){
 										if(wav.getNumChannels() == 1){
 											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer(0);
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorMonoE(size, buffer);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorMonoE(size, buffer);
 											break;
 										}
@@ -268,9 +269,9 @@ void menu<T>::switchState(string fileName){
 											int newSize = size/2;
 											unsigned char* bufferL = wav.getBuffer(0);
 											unsigned char* bufferR = wav.getBuffer(1);
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
 											break;
 										}
@@ -304,7 +305,7 @@ void menu<T>::switchState(string fileName){
 							if(wav.getNumChannels() == 1){
 								int size = wav.getBufferSize();
 								unsigned char* buffer = wav.getBuffer(0);
-								Processor *normalization = new Normalization(5);
+								Processor *normalization = new Normalization(3);
 								normalization->processorMonoE(size, buffer);
 								break;
 							}
@@ -313,7 +314,7 @@ void menu<T>::switchState(string fileName){
 								int newSize = size/2;
 								unsigned char* bufferL = wav.getBuffer(0);
 								unsigned char* bufferR = wav.getBuffer(1);
-								Processor *normalization = new Normalization(5);
+								Processor *normalization = new Normalization(3);
 								normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
 								break;
 							}
@@ -365,9 +366,9 @@ void menu<T>::switchState(string fileName){
 											unsigned char* buffer = wav.getBuffer(0);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorMonoE(size, buffer);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorMonoE(size, buffer);
 											break;
 										}
@@ -378,9 +379,9 @@ void menu<T>::switchState(string fileName){
 											unsigned char* bufferR = wav.getBuffer(1);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
 											break;
 										}
@@ -414,7 +415,7 @@ void menu<T>::switchState(string fileName){
 											unsigned char* buffer = wav.getBuffer(0);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorMonoE(size, buffer);
 											break;
 										}
@@ -425,7 +426,7 @@ void menu<T>::switchState(string fileName){
 											unsigned char* bufferR = wav.getBuffer(1);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
 											break;
 										}
@@ -464,9 +465,9 @@ void menu<T>::switchState(string fileName){
 											unsigned char* buffer = wav.getBuffer(0);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorMonoE(size, buffer);
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorMonoE(size, buffer);
 											break;
 										}
@@ -477,9 +478,9 @@ void menu<T>::switchState(string fileName){
 											unsigned char* bufferR = wav.getBuffer(1);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
 											break;
 										}
@@ -513,7 +514,7 @@ void menu<T>::switchState(string fileName){
 											unsigned char* buffer = wav.getBuffer(0);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorMonoE(size, buffer);
 											break;
 										}
@@ -524,7 +525,7 @@ void menu<T>::switchState(string fileName){
 											unsigned char* bufferR = wav.getBuffer(1);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
 											break;
 										}
@@ -616,9 +617,9 @@ void menu<T>::switchState(string fileName){
 										if(wav.getNumChannels() == 1){
 											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer(0);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorMonoE(size, buffer);
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorMonoE(size, buffer);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
@@ -629,9 +630,9 @@ void menu<T>::switchState(string fileName){
 											int newSize = size/2;
 											unsigned char* bufferL = wav.getBuffer(0);
 											unsigned char* bufferR = wav.getBuffer(1);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
@@ -665,9 +666,9 @@ void menu<T>::switchState(string fileName){
 										if(wav.getNumChannels() == 1){
 											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer(0);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorMonoE(size, buffer);
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorMonoE(size, buffer);
 											break;
 										}
@@ -676,9 +677,9 @@ void menu<T>::switchState(string fileName){
 											int newSize = size/2;
 											unsigned char* bufferL = wav.getBuffer(0);
 											unsigned char* bufferR = wav.getBuffer(1);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
 											break;
 										}
@@ -716,11 +717,11 @@ void menu<T>::switchState(string fileName){
 										if(wav.getNumChannels() == 1){
 											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer(0);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorMonoE(size, buffer);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorMonoE(size, buffer);
 											break;
 										}
@@ -729,11 +730,11 @@ void menu<T>::switchState(string fileName){
 											int newSize = size/2;
 											unsigned char* bufferL = wav.getBuffer(0);
 											unsigned char* bufferR = wav.getBuffer(1);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
-											Processor *normalization = new Normalization(5);
+											Processor *normalization = new Normalization(3);
 											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
 											break;
 										}
@@ -764,7 +765,7 @@ void menu<T>::switchState(string fileName){
 										if(wav.getNumChannels() == 1){
 											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer(0);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorMonoE(size, buffer);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
@@ -775,7 +776,7 @@ void menu<T>::switchState(string fileName){
 											int newSize = size/2;
 											unsigned char* bufferL = wav.getBuffer(0);
 											unsigned char* bufferR = wav.getBuffer(1);
-											Processor *echo = new Echo(1000);
+											Processor *echo = new Echo(10000);
 											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
@@ -808,7 +809,9 @@ void menu<T>::switchState(string fileName){
 					}
 				
 			}	
-
+			cout << "Please input a file name, followed by the .wav extension." << endl;
+			cin >> outFileName;
+			wav.writeFile(outFileName);
 			cout << "Processing Files..." << endl;
 
 			break;
