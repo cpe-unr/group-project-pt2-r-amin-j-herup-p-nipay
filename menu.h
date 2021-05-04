@@ -47,6 +47,7 @@ T menu<T>::switchState(string fileName){
 //wavManager and wavIO class, pass in objects of those class to menu, in default ctor of menu set equal to class, and in main.cpp wavManager and wavIO get created first, then create menu and pass in objects via constructor
 	Wav wav;
 	wav.readFile(fileName);
+
 	do{
 
 		//int userInput;
@@ -86,25 +87,25 @@ T menu<T>::switchState(string fileName){
 						cin >> userChoice3;
 
 						switch(userChoice3){
-						case 1:
-						    cout << "One normalization and one noise gate coming right up, do you want to echo your file as well? (enter 1 for yes and 2 for no) " << endl;
-						    cin >> Yn2;
-						if(Yn2 == 1){
-							cout << "One normalization, one noise gate, and one echo coming right up!" << endl;
-							//add all three and break
-						}else if(Yn2 == 2){
-							cout << "Alright, one normalization and one noise gate coming right up!" << endl;
-							//add two and break;
-						}
-						case 2:
-						    cout << "One normalization and one echo coming right up, do you want to noise gate your file as well? (enter 1 for yes and 2 for no) " << endl;
-						    cin >> Yn3;
-						if(Yn3 == 1){
-							cout << "One normalization, one echo, and one noise gate coming right up!" << endl;
-							//add all three and break;
-						}else if(Yn3 == 2){
-							cout << "Alright, one normalization and one echo coming right up!" << endl;
-						}
+							case 1:
+						   		cout << "One normalization and one noise gate coming right up, do you want to echo your file as well? (enter 1 for yes and 2 for no) " << endl;
+						    		cin >> Yn2;
+								if(Yn2 == 1){
+									cout << "One normalization, one noise gate, and one echo coming right up!" << endl;
+									//add all three and break
+								}else if(Yn2 == 2){
+									cout << "Alright, one normalization and one noise gate coming right up!" << endl;
+									//add two and break;
+								}
+							case 2:
+						    		cout << "One normalization and one echo coming right up, do you want to noise gate your file as well? (enter 1 for yes and 2 for no) " << endl;
+						   		cin >> Yn3;
+								if(Yn3 == 1){
+									cout << "One normalization, one echo, and one noise gate coming right up!" << endl;
+									//add all three and break;
+								}else if(Yn3 == 2){
+									cout << "Alright, one normalization and one echo coming right up!" << endl;
+								}
 					        }
 					}else if(Yn == 2){
 						cout << "Alright, just the normalization, coming right up!" << endl;
@@ -113,8 +114,8 @@ T menu<T>::switchState(string fileName){
 					}
 					
 			    case 2:
-				cout << "One noise gate coming right up, if you want to process another way, enter 1 for yes and 2 for no " << endl;
-				cin >> Yn4;
+					cout << "One noise gate coming right up, if you want to process another way, enter 1 for yes and 2 for no " << endl;
+					cin >> Yn4;
 
 					if(Yn4 == 1){
 						cout << "How do you want to process your files?" << endl;
@@ -124,32 +125,32 @@ T menu<T>::switchState(string fileName){
 						cin >> userChoice4;
 						
 						switch(userChoice4){
-						case 1:
-		                                    cout << "One noise gate and one normalization coming right up, do you want to echo your file as well? (enter 1 for yes and 2 for no) " << endl;
-						    cin >> Yn5;
-						if(Yn5 == 1){
-							cout << "All three comin right up!" << endl;
-							//add all three and break;
-						}else if(Yn5 == 2){
-							cout << "Alright, just noise gate and normalization." << endl;
-							//add two and break;
-						}
-						case 2:
-							cout << "One noise gate and one echo comin right up, do you want to normalize as well? (enter 1 for yes and 2 for no) " << endl;
-							cin >> Yn6;
-						if(Yn6 == 1){
-							cout << "All three coming right up!" << endl;
-						}else if(Yn6 == 2){
-							cout << "Alright, just noise gate and echo." << endl;
-							//add two and break;
-						}
+							case 1:
+								cout << "One noise gate and one normalization coming right up, do you want to echo your file as well? (enter 1 for yes and 2 for no) " << endl;
+						    		cin >> Yn5;
+								if(Yn5 == 1){
+									cout << "All three comin right up!" << endl;
+									//add all three and break;
+								}else if(Yn5 == 2){
+									cout << "Alright, just noise gate and normalization." << endl;
+									//add two and break;
+								}
+							case 2:
+								cout << "One noise gate and one echo comin right up, do you want to normalize as well? (enter 1 for yes and 2 for no) " << endl;
+								cin >> Yn6;
+								if(Yn6 == 1){
+									cout << "All three coming right up!" << endl;
+								}else if(Yn6 == 2){
+									cout << "Alright, just noise gate and echo." << endl;
+									//add two and break;
+								}
 						}
 					}else if(Yn4 == 2){
 						cout << "Alright, just the noise gate, comin right up!" << endl;
 					}
-                            case 3:
-				cout << "One echo coming right up, if you want to process another way, enter 1 for yes and 2 for no " << endl;
-				cin >> Yn7;
+				case 3:
+					cout << "One echo coming right up, if you want to process another way, enter 1 for yes and 2 for no " << endl;
+					cin >> Yn7;
 			
 					if(Yn7 == 1){
 						cout << "How do you want to process your files?" << endl;
@@ -159,24 +160,24 @@ T menu<T>::switchState(string fileName){
 						cin >> userChoice5;
 
 						switch(userChoice5){
-						case 1:
-						    cout << "One echo and one normalization coming right up, do you want to noise gate your file as well? (enter 1 for yes and 2 for no) " << endl;
-						    cin >> Yn8;
-							if(Yn8 == 1){
-								cout << "All three comin right up!" << endl;
-								//add three and break;
-							}else if(Yn8 == 2){
-								cout << "Alright just echo and normalization." << endl;
-							}
-						case 2:
-							cout << "One echo and one noise gate coming right up, do you want to normalize your file as well? (enter 1 for yes and 2 for no) " << endl;
-							cin >> Yn9;
-							    if(Yn9 == 1){
-								cout << "All three comin right up!" << endl;
-							    }else if(Yn9 == 2){
-								cout << "Alright just echo and noise gate." << endl;
-								//add two and break;
-							    }
+							case 1:
+						    		cout << "One echo and one normalization coming right up, do you want to noise gate your file as well? (enter 1 for yes and 2 for no) " << endl;
+						   		cin >> Yn8;
+								if(Yn8 == 1){
+									cout << "All three comin right up!" << endl;
+									//add three and break;
+								}else if(Yn8 == 2){
+									cout << "Alright just echo and normalization." << endl;
+								}
+							case 2:
+								cout << "One echo and one noise gate coming right up, do you want to normalize your file as well? (enter 1 for yes and 2 for no) " << endl;
+								cin >> Yn9;
+							    	if(Yn9 == 1){
+									cout << "All three comin right up!" << endl;
+							    	}else if(Yn9 == 2){
+									cout << "Alright just echo and noise gate." << endl;
+									//add two and break;
+							    	}
 						}
 					}
 				
