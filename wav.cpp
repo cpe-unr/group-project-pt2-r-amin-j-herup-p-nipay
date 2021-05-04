@@ -136,7 +136,9 @@ void Wav::writeFile(const std::string &outFilename){
     outFile.write("data", 4);
     outFile.write((char*)&bufferSize_data, sizeof(bufferSize_data));
     outFile.write("list", 4);
-    //outfile.write((char*))
+    outfile.write((char*)&list_ID, sizeof(list_ID));
+    outfile.write("info", 4);
+    outfile.write((char*)&info_ID, sizeof(info_ID));
     int bytes_per_sample = fmt.bit_depth / 8;
     for (int i = 0; i < bufferSize_data; i++) {
         outFile.write((char*)&(buffers[i / bytes_per_sample % fmt.num_channels][i / fmt.num_channels]), 1);

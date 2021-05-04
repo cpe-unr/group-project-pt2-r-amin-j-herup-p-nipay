@@ -16,10 +16,6 @@ std::string MetaData:: getMdID() const{
     return dstring;
 }
 
-int MetaData::getMdSize() const{
-    return mdSize;
-}
-
 std:: string MetaData::getBuffer() const{
     return buffer;
 }

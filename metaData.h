@@ -4,6 +4,8 @@
 #include <iostream>
 #include <fstream>
 
+#include "metaDataHeader.h"
+
 class MetaData{
 private:
     int mdSize;
@@ -20,5 +22,7 @@ public:
     
     std::string getBuffer() const;
     void setBuffer(std::string);
+    
+    char
     
 };
