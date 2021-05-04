@@ -9,8 +9,8 @@ wavHeader Wav::getwavHeader(){
     return wave_Header;
 }
 
-unsigned char *Wav::getBuffer(){
-    return buffer;
+unsigned char *Wav::getBuffer(int i){
+    return buffers[i];
 }
 int Wav::getBufferSize() const{
 	return bufferSize_data;
@@ -23,7 +23,36 @@ int Wav::getNumChannels(){
 }
 void Wav::readFile(const std::string &fileName){
     std::ifstream file(fileName, std::ios::binary | std::ios::in);
-    
+    if(file.is_open()){
+        file.read((char*)&wave_Header, sizeof(wavHeader));
+
+        if (wave_Header.wav_size > 0) {
+            file.read((char*)&data_Chunk, sizeof(dataChunk));
+        }
+
+        file.read((char*)&fmt, sizeof(FMT));
+
+        dataChunk chunk;
+        while (true) {
+            file.read((char*)&chunk, sizeof(dataChunk));
+            if (chunk.fmt_header[0] == 'd' && chunk.fmt_header[1] == 'a' && chunk.fmt_header[2] == 't' && chunk.fmt_header[3] == 'a') break;
+            file.seekg(chunk.fmt_chunk_size, std::ios::cur);
+        }
+
+        buffers = new unsigned char * [fmt.num_channels];
+        bufferSize_data = chunk.fmt_chunk_size;
+        int bytes_per_sample = fmt.bit_depth / 8;
+        for (int i = 0; i < fmt.num_channels; i++) {
+            buffers[i] = new unsigned char[bufferSize_data / fmt.num_channels];
+        }
+        
+        for (int i = 0; i < bufferSize_data; i++) {
+            file.read((char *) &buffers[i / bytes_per_sample % fmt.num_channels][i / fmt.num_channels], 1);
+        }  
+
+
+
+/*  std::ifstream file(fileName, std::ios::binary | std::ios::in);
     if(file.is_open()){
         file.read((char*)&wave_Header, sizeof(wavHeader));
 
@@ -47,7 +76,7 @@ void Wav::readFile(const std::string &fileName){
         for (int i = 0; i < sample_count; i++) {
             file.read((char*)&buffer[i], sample_size);
         }
-        
+*/        
         // while(file){
         //     file.read((char*)&data_Chunk, sizeof(dataChunk));
             
@@ -102,6 +131,18 @@ void Wav::readFile(const std::string &fileName){
 void Wav::writeFile(const std::string &outFilename){
     std::ofstream outFile(outFilename, std::ios::out | std::ios::binary);
     outFile.write((char*)&wave_Header, sizeof(wavHeader));
+    outFile.write((char*)&data_Chunk, sizeof(dataChunk));
+    outFile.write((char*)&fmt, sizeof(FMT));
+    outFile.write("data", 4);
+    outFile.write((char*)&bufferSize_data, sizeof(bufferSize_data));
+    int bytes_per_sample = fmt.bit_depth / 8;
+    for (int i = 0; i < bufferSize_data; i++) {
+        outFile.write((char*)&(buffers[i / bytes_per_sample % fmt.num_channels][i / fmt.num_channels]), 1);
+    }
+
+/*
+    std::ofstream outFile(outFilename, std::ios::out | std::ios::binary);
+    outFile.write((char*)&wave_Header, sizeof(wavHeader));
     
     //Format Chunk
     outFile.write("fmt ", 4);
@@ -126,13 +167,20 @@ void Wav::writeFile(const std::string &outFilename){
     outFile.write("DATA", 4);
     outFile.write((char*)&bufferSize_data, sizeof(bufferSize_data));
     outFile.write((char*)buffer, bufferSize_data);
+*/
 }
 
 Wav::~Wav(){
-    if(buffer != NULL){
+   /* if(buffer != NULL){
         delete[] buffer;
     }
+   */
+	if(buffers != NULL){
+        for (int i = 0; i < fmt.num_channels; i++) {
+            delete[] buffers[i];
+        }
+    }
+    delete[] buffers;
 }
 
 
-//missing vectors, perserving it in vector, print out

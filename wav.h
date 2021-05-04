@@ -9,16 +9,14 @@
 class Wav{
 protected:
     int bufferSize_data;
-    unsigned char* buffer = NULL;
-    int bitDepth;
-    int numChannels;
+    unsigned char** buffers = NULL;
     std::vector <SubChunkData> metadata;
     wavHeader wave_Header;
     dataChunk data_Chunk;
     FMT fmt;
 public:
     wavHeader getwavHeader();
-    unsigned char *getBuffer();
+    unsigned char *getBuffer(int i);
     int getBufferSize() const;
     int getBitDepth();
     int getNumChannels();

@@ -101,7 +101,7 @@ T menu<T>::switchState(string fileName){
 										if(wav.getNumChannels() == 1){
 											cout << "Normalize, gate, echo, 8bit mono" << endl;
 											int size = wav.getBufferSize();
-											unsigned char* buffer = wav.getBuffer();
+											unsigned char* buffer = wav.getBuffer(0);
 											Processor *normalization = new Normalization(5);
 											normalization->processorMonoE(size, buffer);
 											Processor *noiseGate = new NoiseGate(2);
@@ -113,24 +113,14 @@ T menu<T>::switchState(string fileName){
 										else if(wav.getNumChannels() == 2){
 											int size = wav.getBufferSize();
 											int newSize = size/2;
-											int i,j;
-											unsigned char* buffer = wav.getBuffer();
-											bufferL = new unsigned char[newSize];
-											bufferR = new unsigned char[newSize];
-        										for(i=0,j=0 ; j<size ; i++,j+=2){
-               									bufferL[i]=buffer[j];
-                									bufferR[i]=buffer[j+1];
-        										}
+											unsigned char* bufferL = wav.getBuffer(0);
+											unsigned char* bufferR = wav.getBuffer(1);
 											Processor *normalization = new Normalization(5);
 											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
 											Processor *echo = new Echo(1000);
 											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
-											for(i=0, j=0; j < size; i++, j += 2){
-												buffer[j] = bufferL[i];
-												buffer[j+1] = bufferR[i];
-											}
 											break;
 										}
 										else{
@@ -167,7 +157,7 @@ T menu<T>::switchState(string fileName){
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
 											int size = wav.getBufferSize();
-											unsigned char* buffer = wav.getBuffer();
+											unsigned char* buffer = wav.getBuffer(0);
 											Processor *normalization = new Normalization(5);
 											normalization->processorMonoE(size, buffer);
 											Processor *noiseGate = new NoiseGate(2);
@@ -177,22 +167,12 @@ T menu<T>::switchState(string fileName){
 										else if(wav.getNumChannels() == 2){
 											int size = wav.getBufferSize();
 											int newSize = size/2;
-											int i,j;
-											unsigned char* buffer = wav.getBuffer();
-											bufferL = new unsigned char[newSize];
-											bufferR = new unsigned char[newSize];
-        										for(i=0,j=0 ; j<size ; i++,j+=2){
-               									bufferL[i]=buffer[j];
-                									bufferR[i]=buffer[j+1];
-        										}
+											unsigned char* bufferL = wav.getBuffer(0);
+											unsigned char* bufferR = wav.getBuffer(1);
 											Processor *normalization = new Normalization(5);
-											normalization->processorMonoE(newSize, newSize, bufferR, bufferL);
+											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
 											Processor *noiseGate = new NoiseGate(2);
-											noiseGate->processorMonoE(newSize, newSize, bufferR, bufferL);
-											for(i=0, j=0; j < size; i++, j += 2){
-												buffer[j] = bufferL[i];
-												buffer[j+1] = bufferR[i];
-											}
+											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
 											break;
 										}
 										else{
@@ -227,7 +207,7 @@ T menu<T>::switchState(string fileName){
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
 											int size = wav.getBufferSize();
-											unsigned char* buffer = wav.getBuffer();
+											unsigned char* buffer = wav.getBuffer(0);
 											Processor *normalization = new Normalization(5);
 											normalization->processorMonoE(size, buffer);
 											Processor *echo = new Echo(1000);
@@ -237,7 +217,17 @@ T menu<T>::switchState(string fileName){
 											break;
 										}
 										else if(wav.getNumChannels() == 2){
-
+											int size = wav.getBufferSize();
+											int newSize = size/2;
+											unsigned char* bufferL = wav.getBuffer(0);
+											unsigned char* bufferR = wav.getBuffer(1);
+											Processor *normalization = new Normalization(5);
+											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
+											Processor *echo = new Echo(1000);
+											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
+											break;
 										}
 										else{
 											cout << "Invalid audio file." << endl;
@@ -266,7 +256,7 @@ T menu<T>::switchState(string fileName){
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
 											int size = wav.getBufferSize();
-											unsigned char* buffer = wav.getBuffer();
+											unsigned char* buffer = wav.getBuffer(0);
 											Processor *normalization = new Normalization(5);
 											normalization->processorMonoE(size, buffer);
 											Processor *echo = new Echo(1000);
@@ -274,7 +264,15 @@ T menu<T>::switchState(string fileName){
 											break;
 										}
 										else if(wav.getNumChannels() == 2){
-
+											int size = wav.getBufferSize();
+											int newSize = size/2;
+											unsigned char* bufferL = wav.getBuffer(0);
+											unsigned char* bufferR = wav.getBuffer(1);
+											Processor *normalization = new Normalization(5);
+											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
+											Processor *echo = new Echo(1000);
+											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
+											break;
 										}
 										else{
 											cout << "Invalid audio file." << endl;
@@ -305,13 +303,19 @@ T menu<T>::switchState(string fileName){
 						if(wav.getBitDepth() == 8){
 							if(wav.getNumChannels() == 1){
 								int size = wav.getBufferSize();
-								unsigned char* buffer = wav.getBuffer();
+								unsigned char* buffer = wav.getBuffer(0);
 								Processor *normalization = new Normalization(5);
 								normalization->processorMonoE(size, buffer);
 								break;
 							}
 							else if(wav.getNumChannels() == 2){
-
+								int size = wav.getBufferSize();
+								int newSize = size/2;
+								unsigned char* bufferL = wav.getBuffer(0);
+								unsigned char* bufferR = wav.getBuffer(1);
+								Processor *normalization = new Normalization(5);
+								normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
+								break;
 							}
 							else{
 								cout << "Invalid audio file." << endl;
@@ -358,7 +362,7 @@ T menu<T>::switchState(string fileName){
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
 											int size = wav.getBufferSize();
-											unsigned char* buffer = wav.getBuffer();
+											unsigned char* buffer = wav.getBuffer(0);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
 											Processor *normalization = new Normalization(5);
@@ -368,7 +372,17 @@ T menu<T>::switchState(string fileName){
 											break;
 										}
 										else if(wav.getNumChannels() == 2){
-
+											int size = wav.getBufferSize();
+											int newSize = size/2;
+											unsigned char* bufferL = wav.getBuffer(0);
+											unsigned char* bufferR = wav.getBuffer(1);
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
+											Processor *normalization = new Normalization(5);
+											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
+											Processor *echo = new Echo(1000);
+											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
+											break;
 										}
 										else{
 											cout << "Invalid audio file." << endl;
@@ -397,7 +411,7 @@ T menu<T>::switchState(string fileName){
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
 											int size = wav.getBufferSize();
-											unsigned char* buffer = wav.getBuffer();
+											unsigned char* buffer = wav.getBuffer(0);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
 											Processor *normalization = new Normalization(5);
@@ -405,7 +419,15 @@ T menu<T>::switchState(string fileName){
 											break;
 										}
 										else if(wav.getNumChannels() == 2){
-
+											int size = wav.getBufferSize();
+											int newSize = size/2;
+											unsigned char* bufferL = wav.getBuffer(0);
+											unsigned char* bufferR = wav.getBuffer(1);
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
+											Processor *normalization = new Normalization(5);
+											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
+											break;
 										}
 										else{
 											cout << "Invalid audio file." << endl;
@@ -439,7 +461,7 @@ T menu<T>::switchState(string fileName){
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
 											int size = wav.getBufferSize();
-											unsigned char* buffer = wav.getBuffer();
+											unsigned char* buffer = wav.getBuffer(0);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
 											Processor *echo = new Echo(1000);
@@ -449,7 +471,17 @@ T menu<T>::switchState(string fileName){
 											break;
 										}
 										else if(wav.getNumChannels() == 2){
-
+											int size = wav.getBufferSize();
+											int newSize = size/2;
+											unsigned char* bufferL = wav.getBuffer(0);
+											unsigned char* bufferR = wav.getBuffer(1);
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
+											Processor *echo = new Echo(1000);
+											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
+											Processor *normalization = new Normalization(5);
+											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
+											break;
 										}
 										else{
 											cout << "Invalid audio file." << endl;
@@ -478,7 +510,7 @@ T menu<T>::switchState(string fileName){
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
 											int size = wav.getBufferSize();
-											unsigned char* buffer = wav.getBuffer();
+											unsigned char* buffer = wav.getBuffer(0);
 											Processor *noiseGate = new NoiseGate(2);
 											noiseGate->processorMonoE(size, buffer);
 											Processor *echo = new Echo(1000);
@@ -486,7 +518,15 @@ T menu<T>::switchState(string fileName){
 											break;
 										}
 										else if(wav.getNumChannels() == 2){
-
+											int size = wav.getBufferSize();
+											int newSize = size/2;
+											unsigned char* bufferL = wav.getBuffer(0);
+											unsigned char* bufferR = wav.getBuffer(1);
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
+											Processor *echo = new Echo(1000);
+											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
+											break;
 										}
 										else{
 											cout << "Invalid audio file." << endl;
@@ -517,13 +557,19 @@ T menu<T>::switchState(string fileName){
 						if(wav.getBitDepth() == 8){
 							if(wav.getNumChannels() == 1){
 								int size = wav.getBufferSize();
-								unsigned char* buffer = wav.getBuffer();
+								unsigned char* buffer = wav.getBuffer(0);
 								Processor *noiseGate = new NoiseGate(2);
 								noiseGate->processorMonoE(size, buffer);
 								break;
 							}
 							else if(wav.getNumChannels() == 2){
-
+								int size = wav.getBufferSize();
+								int newSize = size/2;
+								unsigned char* bufferL = wav.getBuffer(0);
+								unsigned char* bufferR = wav.getBuffer(1);
+								Processor *noiseGate = new NoiseGate(2);
+								noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
+								break;
 							}
 							else{
 								cout << "Invalid audio file." << endl;
@@ -569,7 +615,7 @@ T menu<T>::switchState(string fileName){
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
 											int size = wav.getBufferSize();
-											unsigned char* buffer = wav.getBuffer();
+											unsigned char* buffer = wav.getBuffer(0);
 											Processor *echo = new Echo(1000);
 											echo->processorMonoE(size, buffer);
 											Processor *normalization = new Normalization(5);
@@ -579,7 +625,17 @@ T menu<T>::switchState(string fileName){
 											break;
 										}
 										else if(wav.getNumChannels() == 2){
-
+											int size = wav.getBufferSize();
+											int newSize = size/2;
+											unsigned char* bufferL = wav.getBuffer(0);
+											unsigned char* bufferR = wav.getBuffer(1);
+											Processor *echo = new Echo(1000);
+											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
+											Processor *normalization = new Normalization(5);
+											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
+											break;
 										}
 										else{
 											cout << "Invalid audio file." << endl;
@@ -608,7 +664,7 @@ T menu<T>::switchState(string fileName){
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
 											int size = wav.getBufferSize();
-											unsigned char* buffer = wav.getBuffer();
+											unsigned char* buffer = wav.getBuffer(0);
 											Processor *echo = new Echo(1000);
 											echo->processorMonoE(size, buffer);
 											Processor *normalization = new Normalization(5);
@@ -616,7 +672,15 @@ T menu<T>::switchState(string fileName){
 											break;
 										}
 										else if(wav.getNumChannels() == 2){
-
+											int size = wav.getBufferSize();
+											int newSize = size/2;
+											unsigned char* bufferL = wav.getBuffer(0);
+											unsigned char* bufferR = wav.getBuffer(1);
+											Processor *echo = new Echo(1000);
+											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
+											Processor *normalization = new Normalization(5);
+											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
+											break;
 										}
 										else{
 											cout << "Invalid audio file." << endl;
@@ -651,7 +715,7 @@ T menu<T>::switchState(string fileName){
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
 											int size = wav.getBufferSize();
-											unsigned char* buffer = wav.getBuffer();
+											unsigned char* buffer = wav.getBuffer(0);
 											Processor *echo = new Echo(1000);
 											echo->processorMonoE(size, buffer);
 											Processor *noiseGate = new NoiseGate(2);
@@ -661,7 +725,17 @@ T menu<T>::switchState(string fileName){
 											break;
 										}
 										else if(wav.getNumChannels() == 2){
-
+											int size = wav.getBufferSize();
+											int newSize = size/2;
+											unsigned char* bufferL = wav.getBuffer(0);
+											unsigned char* bufferR = wav.getBuffer(1);
+											Processor *echo = new Echo(1000);
+											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
+											Processor *normalization = new Normalization(5);
+											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
+											break;
 										}
 										else{
 											cout << "Invalid audio file." << endl;
@@ -689,7 +763,7 @@ T menu<T>::switchState(string fileName){
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
 											int size = wav.getBufferSize();
-											unsigned char* buffer = wav.getBuffer();
+											unsigned char* buffer = wav.getBuffer(0);
 											Processor *echo = new Echo(1000);
 											echo->processorMonoE(size, buffer);
 											Processor *noiseGate = new NoiseGate(2);
@@ -697,7 +771,15 @@ T menu<T>::switchState(string fileName){
 											break;
 										}
 										else if(wav.getNumChannels() == 2){
-
+											int size = wav.getBufferSize();
+											int newSize = size/2;
+											unsigned char* bufferL = wav.getBuffer(0);
+											unsigned char* bufferR = wav.getBuffer(1);
+											Processor *echo = new Echo(1000);
+											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
+											break;
 										}
 										else{
 											cout << "Invalid audio file." << endl;
