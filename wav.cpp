@@ -13,7 +13,7 @@ unsigned char *Wav::getBuffer(){
     return buffer;
 }
 int Wav::getBufferSize() const{
-	return fmt.data_bytes;
+	return bufferSize_data;
 }
 int Wav::getBitDepth(){
 	return fmt.bit_depth;

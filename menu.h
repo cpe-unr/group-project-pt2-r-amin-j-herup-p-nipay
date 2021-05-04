@@ -99,7 +99,7 @@ T menu<T>::switchState(string fileName){
 									cout << "One normalization, one noise gate, and one echo coming right up!" << endl;
 									if(wav.getBitDepth() == 8){
 										if(wav.getNumChannels() == 1){
-											//cout << "Normalize, gate, echo, 8bit mono" << endl;
+											cout << "Normalize, gate, echo, 8bit mono" << endl;
 											int size = wav.getBufferSize();
 											unsigned char* buffer = wav.getBuffer();
 											Processor *normalization = new Normalization(5);
@@ -111,7 +111,27 @@ T menu<T>::switchState(string fileName){
 											break;
 										}
 										else if(wav.getNumChannels() == 2){
-
+											int size = wav.getBufferSize();
+											int newSize = size/2;
+											int i,j;
+											unsigned char* buffer = wav.getBuffer();
+											bufferL = new unsigned char[newSize];
+											bufferR = new unsigned char[newSize];
+        										for(i=0,j=0 ; j<size ; i++,j+=2){
+               									bufferL[i]=buffer[j];
+                									bufferR[i]=buffer[j+1];
+        										}
+											Processor *normalization = new Normalization(5);
+											normalization->processorStereoE(newSize, newSize, bufferR, bufferL);
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorStereoE(newSize, newSize, bufferR, bufferL);
+											Processor *echo = new Echo(1000);
+											echo->processorStereoE(newSize, newSize, bufferR, bufferL);
+											for(i=0, j=0; j < size; i++, j += 2){
+												buffer[j] = bufferL[i];
+												buffer[j+1] = bufferR[i];
+											}
+											break;
 										}
 										else{
 											cout << "Invalid audio file." << endl;
@@ -155,7 +175,25 @@ T menu<T>::switchState(string fileName){
 											break;
 										}
 										else if(wav.getNumChannels() == 2){
-
+											int size = wav.getBufferSize();
+											int newSize = size/2;
+											int i,j;
+											unsigned char* buffer = wav.getBuffer();
+											bufferL = new unsigned char[newSize];
+											bufferR = new unsigned char[newSize];
+        										for(i=0,j=0 ; j<size ; i++,j+=2){
+               									bufferL[i]=buffer[j];
+                									bufferR[i]=buffer[j+1];
+        										}
+											Processor *normalization = new Normalization(5);
+											normalization->processorMonoE(newSize, newSize, bufferR, bufferL);
+											Processor *noiseGate = new NoiseGate(2);
+											noiseGate->processorMonoE(newSize, newSize, bufferR, bufferL);
+											for(i=0, j=0; j < size; i++, j += 2){
+												buffer[j] = bufferL[i];
+												buffer[j+1] = bufferR[i];
+											}
+											break;
 										}
 										else{
 											cout << "Invalid audio file." << endl;
